@@ -9,7 +9,7 @@ class TodoRepository{
 
     void add(String titile){
         if(titile.trim().isEmpty){
-            throw ArgumentErrot('Задача не может быть пустой');
+            throw ArgumentError('Задача не может быть пустой');
         }
         Todo todo=Todo(titile.trim());
         _todos.add(todo);
@@ -21,17 +21,17 @@ class TodoRepository{
                 return;
             }
         }
-        throw ArgumentErrot('Задача с $id не найдена');
+        throw ArgumentError('Задача с $id не найдена');
     }
 
     void delete(int id){
-        for(int i=0;i<_todos.lendth;i++){
+        for(int i=0;i<_todos.length;i++){
             if(_todos[i].id==id){
                 _todos.removeAt(i);
                 return;
             }
         }
-        throw ArgumentErrot('Задача с $id удалена');
+        throw ArgumentError('Задача с $id удалена');
     }
 
 }

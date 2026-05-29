@@ -17,6 +17,14 @@
 import 'dart:io';
 import 'package:todo_app/todo.dart';
 import 'package:todo_app/todo_repository.dart';
+import 'package:ansicolor/ansicolor.dart';
+
+final AnsiPen green=AnsiPen()..green();
+final AnsiPen green=AnsiPen()..red();
+final AnsiPen green=AnsiPen()..blue();
+final AnsiPen green=AnsiPen()..yellow();
+
+
 
 void main(){
     TodoRepository repo=TodoRepository();
@@ -56,19 +64,10 @@ void addCommand(TodoRepository repo,String input){
     repo.add(titile);
     print("задача добавлена");
 }
-void addCommand(TodoRepository repo, String input) {
-    if (input.length <= 4) {
-    print("Ошибка: введите текст задачи");
-    return;
-    }
 
-    String title = input.substring(4).trim();
-    repo.add(title);
-    print("Задача добавлена");
-}
-void ListCommand(TodoRepository repo) {
+void listCommand(TodoRepository repo) {
     List<Todo> todos = repo.getAll();
-    if (todos.isEmpty()) {
+    if (todos.isEmpty) {
     print("Список задач пуст");
     return;
     }
@@ -102,27 +101,27 @@ bool handleCommand(TodoRepository repo, String input) {
     List<String> parts = input.split(" ");
     String command = parts[0].toLowerCase();
     try {
-    switch (command) {
-    case "add":
-    addCommand(repo, input);
-    break;
-    case "list":
-    listCommand(repo);
-    break;
-    case "done":
-    doneCommand(repo, parts);
-    break;
-    case "delete":
-    deleteCommand(repo, parts);
-    break;
-    case "exit":
-    print("Выход из программы");
-    return true;
-    default:
-    print("Неизвестная команда");
-    }
+        switch (command) {
+            case "add":
+            addCommand(repo, input);
+            break;
+        case "list":
+            listCommand(repo);
+            break;
+        case "done":
+            doneCommand(repo, parts);
+            break;
+        case "delete":
+            deleteCommand(repo, parts);
+            break;
+        case "exit":
+            print("Выход из программы");
+            return true;
+        default:
+            print("Неизвестная команда");
+        }
     } catch (e) {
-    print("Ошибка: $e");
+        print("Ошибка: $e");
     }
     return false;
 }
